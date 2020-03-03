@@ -6,9 +6,6 @@ namespace EntitiesTest.Hubs
 {
     public class EntityHub : Hub
     {
-        public async Task EntityAdded(Entity entity)
-        {
-            await Clients.All.SendAsync("entityAdded", entity);
-        }
+
     }
 }
