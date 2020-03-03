@@ -13,7 +13,7 @@ export class SignalRService {
   
   constructor( @Inject('BASE_URL') private baseUrl: string) {
      this.connection = new HubConnectionBuilder()
-     .withUrl(this.baseUrl +'/entityhub')
+     .withUrl(this.baseUrl +'entityhub')
      .build();
      this.registerOnEvents();
      this.connection.start().catch(err => console.log(err.toString()));

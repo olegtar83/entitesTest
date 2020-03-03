@@ -66,10 +66,7 @@ namespace EntitiesTest
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
-                endpoints.MapHub<EntityHub>("/entities");
-            });
-            app.UseEndpoints(endpoints =>
-            {
+
                 endpoints.MapHub<EntityHub>("/entityhub");
             });
 

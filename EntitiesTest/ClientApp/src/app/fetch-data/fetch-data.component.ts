@@ -6,7 +6,6 @@ import { Observable } from 'rxjs/internal/Observable';
 import {
   tap, map
 } from 'rxjs/operators';
-import { from } from 'rxjs';
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html',
@@ -16,13 +15,8 @@ export class FetchDataComponent {
 
   public entities$: Observable<IEntity[]>;
   public columns: string[] = [];
-  constructor(private entityService: EntitiesService, private signalr: SignalRService) { 
-    signalr.entityAdded.subscribe(entity => {
-      this.entities$.pipe(map(entityList => {
-        entityList.push(entity);
-        return entityList;
-        }));
-      });
+  constructor(private entityService: EntitiesService) { 
+   
   }
 
 
@@ -34,6 +28,10 @@ export class FetchDataComponent {
       const first = entities[0];
       this.columns = Object.keys(first).slice(1);
     }));
+  }
+
+  public getTotal(column: number): string {
+    return column == 0? 'Sum: ': this.entityService.getTotal(column).toString();
   }
 
   public cellStyle(num: number) {

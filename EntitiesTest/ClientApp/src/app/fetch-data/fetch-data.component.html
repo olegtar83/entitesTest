@@ -7,6 +7,9 @@
           {{dataItem[columns[columnIndex]]}}
         </div>
       </ng-template>
+      <ng-template kendoGridFooterTemplate let-columnIndex="columnIndex">
+        {{getTotal(columnIndex)}}
+      </ng-template>
     </kendo-grid-column>
   </kendo-grid>
 </ng-container>
