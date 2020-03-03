@@ -1,0 +1,12 @@
+<ng-container *ngIf="entities$ | async as entities">
+  <kendo-grid [kendoGridBinding]="entities"  [columnMenu]="true"
+             >
+    <kendo-grid-column *ngFor="let column of columns" [title]="column" [field]="column">
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex" let-columnIndex="columnIndex">
+        <div class="whole-cell" [ngStyle]="cellStyle(dataItem[columns[columnIndex]])">
+          {{dataItem[columns[columnIndex]]}}
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+  </kendo-grid>
+</ng-container>
