@@ -1,11 +1,8 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { EntitiesService } from '../services/entities-service';
-import { SignalRService } from '../services/signalr.service';
 import { IEntity } from '../models/entities';
 import { Observable } from 'rxjs/internal/Observable';
-import {
-  tap, map
-} from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-fetch-data',
   templateUrl: './fetch-data.component.html',
@@ -15,10 +12,7 @@ export class FetchDataComponent {
 
   public entities$: Observable<IEntity[]>;
   public columns: string[] = [];
-  constructor(private entityService: EntitiesService) { 
-   
-  }
-
+  constructor(private entityService: EntitiesService) { }
 
   public ngOnInit(): void {
     this.entities$ = this.entityService.get().pipe(tap(entities => {
@@ -31,7 +25,7 @@ export class FetchDataComponent {
   }
 
   public getTotal(column: number): string {
-    return column == 0? 'Sum: ': this.entityService.getTotal(column).toString();
+    return column == 0? 'Sum: ': this.entityService.getTotal(column).toFixed(2).toString();
   }
 
   public cellStyle(num: number) {
